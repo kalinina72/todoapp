@@ -40,11 +40,6 @@ body {
     0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-.flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .center-block h1:first-child {
     position: absolute;
     left: 0;
@@ -161,8 +156,16 @@ body {
         display: none;
     }
     .form-group input {
-        width: 100%;
-        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (min-width: 520px) {
+    .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 .form-group input {
