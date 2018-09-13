@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template • TodoMVC</title>
+    <title>{% block title %}Main{% endblock %}</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/app.css">
+    {% block css %} {% endblock %}
+</head>
+<body>
+{% include "parts/header.twig" %}
+{% block sidebar %}{% endblock %}
+{% block content %}{% endblock %}
+<script src="/js/jquery-3.3.1.js"></script>
+{% block js %} {% endblock %}
+</body>
+</html>

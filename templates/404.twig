@@ -1,0 +1,10 @@
+{% extends "main.twig" %}
+{% block title %}404{% endblock %}
+{% block content %}
+    <div class="center-block">
+        <h1 class="text-center">404</h1>
+        {% include "parts/error_block.twig" %}
+        <h1 class="text-center"><a class="primary-button" href="/">Go home</a></h1>
+    </div>
+{% endblock %}
+{% block js %} {% endblock %}

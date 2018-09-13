@@ -1,0 +1,13 @@
+<div class="nav-header">
+    <div class="nav-content">
+        <div class="brand wrap"><a href="/">todos</a></div>
+        {% if user %}
+            <div class="wrap">
+                <span class="username">{{ user.getLogin() }}</span><a class="primary-button" href="/auth/logout">Logout</a>
+            </div>
+
+        {% else %}
+            <div class="wrap"><a class="primary-button" href="/auth">Let`s auth!</a></div>
+        {% endif %}
+    </div>
+</div>

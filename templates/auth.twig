@@ -1,0 +1,47 @@
+{% extends "main.twig" %}
+{% block title %}Auth todo{% endblock %}
+
+{% block content %}
+    <div class="center-block">
+        <h1 class="text-center">Auth</h1>
+        {% include "parts/error_block.twig" %}
+        <div class="flex-center">
+            {% if user %}
+                <form class="auth-form" action="/auth/logout" method="get">
+                    <p> You already login as <span class="username">{{ user.getLogin() }}</span></p>
+                    <div>
+                        <button type="submit" class="primary-button">Logout</button>
+                    </div>
+                </form>
+            {% else %}
+                <form class="auth-form" action="/auth" method="post" data-default-action="/auth">
+                    <div class="form-group">
+                        <label for="login">Login </label>
+                        <input id="login" name="login" type="text" placeholder="login"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password </label>
+                        <input id="password" name="password" type="password" placeholder="password"/>
+                    </div>
+                    <div class="form-group flex-center">
+                        <button class="primary-button" name="action" type="submit" value="login">Login</button>
+                        <button class="primary-button" name="action" type="submit" value="register">Register</button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $('.auth-form').on('click', 'button[type="submit"]', function (event) {
+                let action = $(this).val();
+                let form = $(this).closest('form');
+                let default_action = form.data('default-action');
+                form.attr('action', default_action + "/" + action);
+            });
+        });
+    </script>
+{% endblock %}
+
