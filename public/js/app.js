@@ -65,7 +65,7 @@ $(function () {
     };
     //Todo: добавить LocalStorage для оффлайна
 
-    function App(selector, store) {
+    function App(selector, store, syncInterval = 5000) {
         let ENTER_KEY = 13;
         let ESCAPE_KEY = 27;
 
@@ -73,6 +73,8 @@ $(function () {
             $: $(selector),
             router: null,
             store: store,
+            timerId: null,
+            syncInterval: syncInterval,
 
             init: function () {
                 let routes = {
@@ -83,6 +85,11 @@ $(function () {
                 this.router.init();
                 this.bindEvents();
                 this.refreshGeneralControls();
+                this.store.forceReceiveTodos();
+                let app = this;
+                this.timerId = setInterval(this.sync.bind(this), syncInterval);
+            },
+            sync: function() {
                 this.store.forceReceiveTodos();
             },
 
@@ -299,6 +306,6 @@ $(function () {
      * Start app
      */
     let store = new ServerStore("/api/todos")
-    let app = new App('.todoapp', store);
+    let app = new App('.todoapp', store, 4000);
     app.init();
 });
